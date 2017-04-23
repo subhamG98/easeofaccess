@@ -23,7 +23,6 @@ public class MyAccessibilityService extends AccessibilityService {
             .getSimpleName();
 
 
-
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         Log.i(TAG, "ACC::onAccessibilityEvent: " + event.getEventType());
@@ -67,12 +66,11 @@ public class MyAccessibilityService extends AccessibilityService {
 */
 
 
-
         if (AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED == event
                 .getEventType() || AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED == event
-                .getEventType() || AccessibilityEvent.TYPE_VIEW_LONG_CLICKED==event.getEventType()) {
+                .getEventType() || AccessibilityEvent.TYPE_VIEW_LONG_CLICKED == event.getEventType()) {
 
-            Log.i("eventis=",""+event.toString());
+            Log.i("eventis=", "" + event.toString());
 
 
             AccessibilityNodeInfo nodeInfo1 = getRootInActiveWindow();
@@ -85,20 +83,18 @@ public class MyAccessibilityService extends AccessibilityService {
                 return;
             }
             List<AccessibilityNodeInfo> list = nodeInfo1
-                        .findAccessibilityNodeInfosByText("Paste");
+                    .findAccessibilityNodeInfosByText("Paste");
 
 
-            Log.i("Dekh abb sabb",""+nodeInfo1.getCollectionInfo()+"child"+nodeInfo1.getChild(0)+"count="+nodeInfo1.getViewIdResourceName());
-
+            Log.i("Dekh abb sabb", "" + nodeInfo1.getCollectionInfo() + "child" + nodeInfo1.getChild(0) + "count=" + nodeInfo1.getViewIdResourceName());
 
 
             Log.i(TAG, "finding= " + OverlayShowingService.msg1);
-                for (AccessibilityNodeInfo node : list) {
-                    Log.i(TAG, "ACC::onAccessibilityEvent: left_button " + node);
-                    node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                    //MainActivity.flag=0;
-                }
-
+            for (AccessibilityNodeInfo node : list) {
+                Log.i(TAG, "ACC::onAccessibilityEvent: left_button " + node);
+                node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                //MainActivity.flag=0;
+            }
 
 
         }
